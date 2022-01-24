@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CallApiExampleRx</string>
+    <string name="list_repo">List Repo</string>
+    <string name="list_user">List User</string>
+    <string name="button_start">Start</string>
+    <string name="button_ok">Ok</string>
+</resources>
