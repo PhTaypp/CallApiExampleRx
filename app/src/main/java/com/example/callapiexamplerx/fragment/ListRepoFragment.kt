@@ -51,7 +51,7 @@ class ListRepoFragment : Fragment() {
             thisContext = container.context
         }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_user, container, false)
+        return inflater.inflate(R.layout.fragment_list_repo, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

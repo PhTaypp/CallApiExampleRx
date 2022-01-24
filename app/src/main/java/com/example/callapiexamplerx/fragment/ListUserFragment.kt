@@ -28,7 +28,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-class ListUserCoroutineFragment : Fragment() {
+class ListUserFragment : Fragment() {
     var scope = CoroutineScope(CoroutineName("myScope"))
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class ListUserCoroutineFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_user_coroutine, container, false)
+        return inflater.inflate(R.layout.fragment_list_user, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

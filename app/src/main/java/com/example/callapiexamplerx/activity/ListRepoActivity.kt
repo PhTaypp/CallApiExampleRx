@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.example.callapiexamplerx.R
 import com.example.callapiexamplerx.fragment.ListRepoFragment
-import com.example.callapiexamplerx.fragment.ListUserCoroutineFragment
+import com.example.callapiexamplerx.fragment.ListUserFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.CoroutineScope
@@ -59,7 +59,7 @@ class ListRepoActivity : AppCompatActivity() {
                     }
 
                     2 -> {
-                        fragment = ListUserCoroutineFragment()
+                        fragment = ListUserFragment()
                     }
                 }
                 val fm: FragmentManager = supportFragmentManager

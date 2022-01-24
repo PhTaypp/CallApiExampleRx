@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.ListRepoFragment">
+    tools:context=".fragment.ListUserFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_users"
+        android:id="@+id/rv_users_coroutine"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="40dp"
         android:paddingBottom="40dp">
     </androidx.recyclerview.widget.RecyclerView>
+
 </FrameLayout>
