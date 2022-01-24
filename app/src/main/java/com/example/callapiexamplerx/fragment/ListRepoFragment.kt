@@ -1,19 +1,26 @@
 package com.example.callapiexamplerx.fragment
 
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import android.widget.Button
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.callapiexamplerx.R
 import com.example.callapiexamplerx.model.Users
 import com.example.callapiexamplerx.activity.ListRepoActivity
 import com.example.callapiexamplerx.adapter.RepoAdapter
 import com.example.callapiexamplerx.api.ApiCoroutines
+import com.example.callapiexamplerx.model.Item
 import com.example.callapiexamplerx.model.RepoModel
 import com.example.callapiexamplerx.utils.Constant
 import com.squareup.moshi.JsonAdapter
@@ -21,7 +28,6 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
 import kotlinx.coroutines.*
 import okhttp3.*
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.lang.reflect.Type
@@ -29,6 +35,7 @@ import java.lang.reflect.Type
 
 class ListRepoFragment : Fragment() {
     var scope = CoroutineScope(CoroutineName("myScope"))
+    var listRepoOnItemClickListener: RepoAdapter.OnItemRepoClickListener? = null
     private lateinit var thisContext: Context
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -168,12 +175,13 @@ class ListRepoFragment : Fragment() {
             }
 
         }
-//        adapter.listrOnItemClickListener = object : UserAdapter.OnClickListener {
-//            override fun onClickItem(
-//                u : Users
-//            ) {
-//                showAvaUser(u.avatar_url.toString())
-//            }
+        repoAdapter.listRepoOnItemClickListener = object : RepoAdapter.OnItemRepoClickListener {
+            override fun onClickItem(item: Item) {
+                showAvaRepo(item.owner.avatarUrl)
+            }
+        }
+
+
 //
 //        }
 //        // Thực thi request.
@@ -203,6 +211,22 @@ class ListRepoFragment : Fragment() {
 ////        })
 //    }
     }
-
+    private fun showAvaRepo(avatarUrl : String){
+        val dialog = Dialog(requireContext(), android.R.style.Theme_Translucent_NoTitleBar_Fullscreen)
+        val contentView: View =
+            LayoutInflater.from(context).inflate(R.layout.dialog_image_user, null)
+        dialog.setContentView(contentView)
+        dialog.setCancelable(false)
+        val window: Window? = dialog.window
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        window?.setBackgroundDrawableResource(R.color.transparent)
+        val imgAva = dialog.findViewById(R.id.imgAvatar) as ImageView
+        Glide.with(requireContext()).load(avatarUrl).into(imgAva)
+        val okBtn = dialog.findViewById(R.id.btnOk) as Button
+        okBtn.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
 }
 
